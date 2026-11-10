@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登录 · 风语 | 枫原万叶</title>
+<meta name="description" content="留下名字，风便认得你——风语 · 枫原万叶主题作品。">
+<meta name="theme-color" content="#3d4454">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2453a'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23f6ead6' font-family='serif'%3E枫%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/app/apple-touch-icon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body class="page-login" data-page="login">
+<canvas class="leaves" id="leavesCanvas" aria-hidden="true"></canvas>
+<div class="page-bg" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topnav">
+  <a class="brand" href="index.html" aria-label="风语首页">
+    <span class="seal" aria-hidden="true">枫</span>
+    <span class="brand-name">风语 · 枫原万叶</span>
+  </a>
+  <nav class="nav-links" aria-label="主导航">
+    <a href="index.html" data-nav="home">首页</a>
+    <a href="chat.html" data-nav="chat">风语对话</a>
+    <a href="story.html" data-nav="story">风语剧情</a>
+    <a href="journey.html" data-nav="journey">风之旅程</a>
+    <a href="gallery.html" data-nav="gallery">枫叶图鉴</a>
+    <a href="install.html" data-nav="install">安装</a>
+  </nav>
+  <div class="nav-auth" id="navAuth"></div>
+</header>
+
+<main class="login-main">
+  <section class="login-art" aria-label="枫原万叶与风">
+    <img src="assets/img/hero.jpg" alt="枫原万叶立于枫树下">
+    <div class="art-text">
+      <p class="kicker">WIND WHISPER · INAZUMA</p>
+      <h1>风会记得<br>每一个名字</h1>
+      <blockquote>「云隐雁鸣，风归万叶。」</blockquote>
+      <p class="art-sub">在风起之前，先留下你的名字。</p>
+    </div>
+  </section>
+
+  <section class="login-panel">
+    <div class="card login-card" id="loginCard">
+      <p class="kicker">ENTER THE WIND</p>
+      <h2>进入风语</h2>
+      <p class="card-sub">这里是万叶歇脚的枫树下。报上名字，风便认得你。</p>
+
+      <form id="loginForm" novalidate>
+        <div class="field" id="fieldName">
+          <label for="loginName">旅人名</label>
+          <input id="loginName" name="name" type="text" maxlength="12" placeholder="旅人" autocomplete="nickname">
+          <p class="error" id="errName" aria-live="polite"></p>
+        </div>
+
+        <div class="field" id="fieldPass">
+          <label for="loginPass">密语</label>
+          <input id="loginPass" name="pass" type="password" placeholder="任意一句，风能听懂就好" autocomplete="current-password">
+          <p class="error" id="errPass" aria-live="polite"></p>
+        </div>
+
+        <p class="form-msg" id="formMsg" aria-live="polite"></p>
+
+        <div class="login-actions">
+          <button class="btn btn-primary" type="submit">进入风语</button>
+          <button class="btn btn-ghost" type="button" id="guestBtn">以访客身份进入</button>
+        </div>
+
+        <p class="form-note">本地演示，账号仅保存在本机；密语不作真实校验，也不会离开这台设备。</p>
+      </form>
+    </div>
+
+    <div class="card login-card already" id="alreadyCard" hidden>
+      <p class="kicker">YOU ARE IN THE WIND</p>
+      <h2>你已在风中</h2>
+      <p class="card-sub">风记得你，<strong id="alreadyName">旅人</strong>。要继续赶路，还是先回望一眼？</p>
+      <div class="login-actions">
+        <a class="btn btn-primary" href="chat.html">继续对话</a>
+        <a class="btn btn-ghost" href="index.html">返回首页</a>
+      </div>
+      <p class="form-note">若想换一个名字，可在右上角点击「旅人 · 名字」退出。</p>
+    </div>
+  </section>
+</main>
+
+<noscript><p class="noscript">请开启 JavaScript，以便进入风语。</p></noscript>
+
+<script src="js/common.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

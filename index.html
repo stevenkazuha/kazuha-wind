@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>风语 · 枫原万叶 | 作品首页</title>
+<meta name="description" content="风语——与枫原万叶对话，听风，也听你。一个关于风、枫叶与短歌的本地演示作品。">
+<meta name="theme-color" content="#3d4454">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2453a'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23f6ead6' font-family='serif'%3E枫%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/img/hero.jpg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/app/apple-touch-icon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body class="page-home" data-page="home">
+<canvas class="leaves" id="leavesCanvas" aria-hidden="true"></canvas>
+<div class="page-bg" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topnav">
+  <a class="brand" href="index.html" aria-label="风语首页">
+    <span class="seal" aria-hidden="true">枫</span>
+    <span class="brand-name">风语 · 枫原万叶</span>
+  </a>
+  <nav class="nav-links" aria-label="主导航">
+    <a href="index.html" data-nav="home">首页</a>
+    <a href="chat.html" data-nav="chat">风语对话</a>
+    <a href="story.html" data-nav="story">风语剧情</a>
+    <a href="journey.html" data-nav="journey">风之旅程</a>
+    <a href="gallery.html" data-nav="gallery">枫叶图鉴</a>
+    <a href="install.html" data-nav="install">安装</a>
+  </nav>
+  <div class="nav-auth" id="navAuth"></div>
+</header>
+
+<main>
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="hero-art" aria-hidden="true"><img src="assets/img/hero.jpg" alt=""></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-kicker">KAEDEHARA KAZUHA · 風の葉</p>
+        <h1 class="hero-title">风语</h1>
+        <p class="hero-line">与枫原万叶对话，听风，也听你</p>
+        <p class="hero-poem">风过无痕处，一叶红于水上秋，人间正微凉。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="chat.html">与万叶对话<span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="gallery.html">翻开画册</a>
+        </div>
+        <div class="hero-status">
+          <span class="live"><i aria-hidden="true"></i>万叶在线 · 静候风来</span>
+          <button class="listen-btn" type="button" data-clip="maple" title="播放枫原万叶的中文原声">听万叶的声音</button>
+        </div>
+        <div class="hero-facts">
+          <div><span>元素</span><b>风 · Anemo</b></div>
+          <div><span>武器</span><b>单手剑</b></div>
+          <div><span>所属</span><b>稻妻 · 浪人</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据条 -->
+  <section class="stats reveal" id="stats" aria-label="同行数据">
+    <ul class="stat-row">
+      <li>
+        <strong><span class="num" data-count="10">10</span></strong>
+        <span>拾得枫叶</span>
+      </li>
+      <li>
+        <strong><span class="num" data-count="9">9</span></strong>
+        <span>话题</span>
+      </li>
+      <li>
+        <strong><span class="num" data-count="1280" data-comma>1,280</span><small>里</small></strong>
+        <span>同行里程</span>
+      </li>
+      <li>
+        <strong><span class="num" data-count="24">24</span><small>时辰</small></strong>
+        <span>陪伴</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 功能卡 -->
+  <section class="features reveal" aria-labelledby="featureTitle">
+    <div class="features-inner">
+      <div class="sec-head">
+        <div>
+          <p class="kicker">THREE WAYS TO WALK</p>
+          <h2 id="featureTitle">三条小径，都通往风</h2>
+        </div>
+        <p class="sec-sub">说说话，看看一路的痕迹，再拾几片枫叶。不必按顺序，风不催人。</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M3 8h9a3 3 0 100-6H8"/>
+              <path d="M3 13h13a3 3 0 110 6h-5"/>
+              <path d="M3 18h6"/>
+            </svg>
+          </span>
+          <h3>风语对话</h3>
+          <p>与万叶说说话。诗意的短句，或简洁的回答，都由你选；也可以递一张照片给他。</p>
+          <a class="go" href="chat.html">进入对话</a>
+        </article>
+
+        <article class="card feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M15.5 8.5l-2 5-5 2 2-5z"/>
+            </svg>
+          </span>
+          <h3>风之旅程</h3>
+          <p>心情的曲线、属性的雷达、拾叶的进度与主题分布，都在一方安静的面板里。</p>
+          <a class="go" href="journey.html">查看旅程</a>
+        </article>
+
+        <article class="card feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 4C12 4 5 7 5 14c0 3 2 5 5 5 7 0 10-7 10-15z"/>
+              <path d="M4 20c1.5-5 5-8 10-10"/>
+            </svg>
+          </span>
+          <h3>枫叶图鉴</h3>
+          <p>官方立绘、生日贺图与宣传壁纸，一册收齐。随手翻，随手停。</p>
+          <a class="go" href="gallery.html">翻开图鉴</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 诗句 -->
+  <section class="interlude reveal" aria-label="诗句">
+    <div class="poem-band">
+      <blockquote>「风过无痕处，一叶红于水上秋，<br>人间正微凉。」</blockquote>
+      <cite>— 短歌《风与叶》</cite>
+    </div>
+  </section>
+
+  <!-- 图库横滑预览 -->
+  <section class="preview reveal" id="preview" aria-labelledby="previewTitle">
+    <div class="preview-head">
+      <h2 id="previewTitle">风拾遗</h2>
+      <a href="gallery.html">进入枫叶图鉴 →</a>
+    </div>
+    <div class="preview-row">
+      <a class="preview-item" href="gallery.html#s01">
+        <img src="assets/img/official/splash-kv.jpg" alt="红叶逐荒波">
+        <span>红叶逐荒波</span>
+      </a>
+      <a class="preview-item" href="gallery.html#s03">
+        <img src="assets/img/official/splash-fullbody.jpg" alt="全身立绘">
+        <span>全身立绘</span>
+      </a>
+      <a class="preview-item" href="gallery.html#s08">
+        <img src="assets/img/official/birthday-2024.jpg" alt="夜色航船">
+        <span>夜色航船</span>
+      </a>
+      <a class="preview-item" href="gallery.html#s07">
+        <img src="assets/img/official/birthday-2022.jpg" alt="秋日贺图">
+        <span>秋日贺图</span>
+      </a>
+      <a class="preview-item" href="gallery.html#s09">
+        <img src="assets/img/official/birthday-2025.jpg" alt="白猫与枫">
+        <span>白猫与枫</span>
+      </a>
+      <a class="preview-item" href="gallery.html#s02">
+        <img src="assets/img/official/splash-gacha.jpg" alt="祈愿之姿">
+        <span>祈愿之姿</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="seal" aria-hidden="true">枫</span>
+      <div>
+        <h2>风语 · 枫原万叶</h2>
+        <p>一个关于风、枫叶与短歌的对话作品。以《原神》角色枫原万叶为原型，用原生 HTML / CSS / JavaScript 手工搭建。</p>
+      </div>
+    </div>
+    <nav class="foot-nav" aria-label="页脚导航">
+      <h3>行迹</h3>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="chat.html">风语对话</a></li>
+        <li><a href="story.html">风语剧情</a></li>
+        <li><a href="journey.html">风之旅程</a></li>
+        <li><a href="gallery.html">枫叶图鉴</a></li>
+      </ul>
+    </nav>
+    <div class="foot-note">
+      <h3>风记</h3>
+      <p>「不必急着赶路。<br>风会替你把该遇见的，<br>都吹到面前。」</p>
+      <p class="copy">© <span data-year>2026</span> 风语 · 个人练习作品，仅供学习交流；角色版权归米哈游所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div class="side-mark" aria-hidden="true">風 と 葉</div>
+
+<noscript><p class="noscript">请开启 JavaScript，以便进入风语。</p></noscript>
+
+<script src="js/common.js"></script>
+<script src="js/voice-lines.js"></script>
+<script src="js/voice.js"></script>
+</body>
+</html>

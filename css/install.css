@@ -1,0 +1,248 @@
+/* ─────────────────────────────────────────────
+   风语 · 安装 / 离线包页
+   延续暖纸 + 金饰体系，只做本页排版
+   ───────────────────────────────────────────── */
+
+.page-install .install-main {
+  position: relative;
+  z-index: 3;
+  padding: calc(var(--nav-h) + 34px) var(--gutter) 40px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.install-hero {
+  position: relative;
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--gold-line-soft);
+}
+
+.install-hero h1 {
+  margin: 8px 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #3a3346;
+}
+
+.install-lead {
+  max-width: 46ch;
+  font-size: 13.5px;
+  line-height: 1.95;
+  color: var(--ink-2);
+}
+
+.install-main .kicker {
+  white-space: nowrap;
+  letter-spacing: 0.2em;
+}
+
+/* ── 两张主卡 ───────────────────────────── */
+.install-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 34px;
+}
+
+.install-card {
+  position: relative;
+  padding: 22px 22px 24px;
+  background: linear-gradient(180deg, var(--panel), #f7f1e2);
+  border: 1px solid var(--gold-line-soft);
+  box-shadow: var(--shadow);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+
+.install-card::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(185, 145, 90, 0.22);
+  pointer-events: none;
+}
+
+.install-card .card-mark {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: rgba(185, 145, 90, 0.32);
+}
+
+.install-card h2 {
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #3f382c;
+}
+
+.install-card p {
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.install-card p code {
+  padding: 1px 5px;
+  font-size: 11.5px;
+  background: rgba(185, 145, 90, 0.16);
+  border-radius: 3px;
+}
+
+.install-state {
+  min-height: 2.6em;
+  margin: 4px 0 14px !important;
+  color: var(--ink-2) !important;
+}
+
+.install-btn {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.install-hint {
+  font-size: 11px !important;
+  color: var(--faint) !important;
+}
+
+/* 环境说明：安装需要安全上下文 */
+.install-rule {
+  margin-top: 10px !important;
+  padding: 8px 10px;
+  font-size: 11px !important;
+  line-height: 1.8 !important;
+  color: #7a6a52 !important;
+  background: rgba(185, 145, 90, 0.1);
+  border-left: 2px solid rgba(185, 145, 90, 0.45);
+}
+
+/* 桌面版下载：a 元素借用按钮样式 */
+.install-card a.install-btn {
+  margin-top: 4px;
+  color: #4a3513;
+  text-decoration: none;
+}
+
+/* 离线包：降为一行小字 */
+.install-card.is-minor { background: linear-gradient(180deg, rgba(249, 244, 233, 0.9), rgba(243, 236, 222, 0.9)); }
+
+.install-minor-text {
+  margin-bottom: 12px;
+}
+
+.install-minor-text strong {
+  font-weight: 600;
+  color: #8a4b3a;
+}
+
+.install-mini {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-decoration-color: rgba(185, 145, 90, 0.45);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.2s var(--ease);
+}
+
+.install-mini:hover { color: var(--crimson); }
+
+/* ── 装好之后的样子 ─────────────────────── */
+.install-diff {
+  margin-bottom: 30px;
+  padding: 18px 20px 16px;
+  background: rgba(251, 247, 236, 0.6);
+  border: 1px solid var(--gold-line-soft);
+}
+
+.install-diff-title {
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: #4a4234;
+}
+
+.install-diff ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px 18px;
+  list-style: none;
+}
+
+.install-diff li {
+  padding-left: 12px;
+  font-size: 12px;
+  line-height: 1.85;
+  color: var(--muted);
+  border-left: 2px solid rgba(185, 145, 90, 0.35);
+}
+
+.install-diff strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--gold-deep);
+}
+
+/* ── 平台说明 ───────────────────────────── */
+.install-guide {
+  margin-bottom: 26px;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.guide-item {
+  padding: 16px 18px;
+  background: rgba(251, 247, 236, 0.72);
+  border: 1px solid var(--gold-line-soft);
+  border-left: 3px solid var(--gold);
+}
+
+.guide-item h3 {
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #473f31;
+}
+
+.guide-item p {
+  font-size: 12px;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.install-note {
+  padding: 14px 18px;
+  font-size: 11.5px;
+  line-height: 1.9;
+  color: var(--faint);
+  text-align: center;
+  border-top: 1px solid var(--gold-line-soft);
+}
+
+@media (max-width: 760px) {
+  .page-install .install-main {
+    padding: calc(var(--nav-h) + 20px) 16px 26px;
+  }
+  .install-card { padding: 18px 16px 20px; }
+  .install-hero h1 { font-size: 28px; }
+  .install-grid { gap: 14px; }
+}

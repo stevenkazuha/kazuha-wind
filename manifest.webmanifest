@@ -1,0 +1,25 @@
+{
+  "name": "风语 · 枫原万叶",
+  "short_name": "风语",
+  "description": "与枫原万叶对话、走三段剧情、翻一册枫叶图鉴。一个关于风与短歌的本地作品。",
+  "id": "./",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["entertainment", "lifestyle"],
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#1b2028",
+  "theme_color": "#3d4454",
+  "icons": [
+    { "src": "assets/img/app/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/app/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/app/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "风语对话", "url": "./chat.html", "icons": [{ "src": "assets/img/app/icon-192.png", "sizes": "192x192" }] },
+    { "name": "风语剧情", "url": "./story.html", "icons": [{ "src": "assets/img/app/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

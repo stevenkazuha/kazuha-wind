@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>风之旅程 · 枫原万叶</title>
+<meta name="description" content="与枫原万叶同行的记录：心情曲线、风之属性、拾叶进度与对话主题。">
+<meta name="theme-color" content="#3d4454">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2453a'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23f6ead6' font-family='serif'%3E枫%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/app/apple-touch-icon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/journey.css">
+</head>
+<body class="page-journey" data-page="journey">
+<canvas class="leaves" id="leavesCanvas" aria-hidden="true"></canvas>
+<div class="page-bg" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topnav">
+  <a class="brand" href="index.html" aria-label="风语首页">
+    <span class="seal" aria-hidden="true">枫</span>
+    <span class="brand-name">风语 · 枫原万叶</span>
+  </a>
+  <nav class="nav-links" aria-label="主导航">
+    <a href="index.html" data-nav="home">首页</a>
+    <a href="chat.html" data-nav="chat">风语对话</a>
+    <a href="story.html" data-nav="story">风语剧情</a>
+    <a href="journey.html" data-nav="journey">风之旅程</a>
+    <a href="gallery.html" data-nav="gallery">枫叶图鉴</a>
+    <a href="install.html" data-nav="install">安装</a>
+  </nav>
+  <div class="nav-auth" id="navAuth"></div>
+</header>
+
+<main class="journey">
+  <header class="page-head">
+    <div>
+      <p class="kicker">WIND JOURNEY · LOCAL RECORDS</p>
+      <h1>风之旅程</h1>
+      <p class="lede">与万叶同行的这些日子，风替我记下了。数据都来自这台设备上的对话记录，不出门，也不上传。</p>
+    </div>
+    <div class="head-side">
+      <span class="demo-chip" id="demoChip" hidden>示例数据</span>
+      <p class="who" id="journeyWho">旅人 · 访客</p>
+    </div>
+  </header>
+
+  <section class="overview" aria-label="旅程概览">
+    <article class="card ov-card">
+      <span class="ov-label">今日对话</span>
+      <strong id="ovChats">0</strong>
+      <span class="ov-unit">句</span>
+    </article>
+    <article class="card ov-card">
+      <span class="ov-label">拾得枫叶</span>
+      <strong id="ovLeaves">0</strong>
+      <span class="ov-unit">/ 10 片</span>
+    </article>
+    <article class="card ov-card">
+      <span class="ov-label">同行里程</span>
+      <strong>1,280</strong>
+      <span class="ov-unit">里</span>
+    </article>
+    <article class="card ov-card">
+      <span class="ov-label">心情指数</span>
+      <strong id="ovMood">—</strong>
+      <span class="ov-unit">/ 100</span>
+    </article>
+  </section>
+
+  <section class="panels" aria-label="数据面板">
+    <article class="card panel-card">
+      <div class="card-head">
+        <h2>最近七日 · 心情</h2>
+        <span class="hint">按对话情绪推算</span>
+      </div>
+      <div class="canvas-wrap"><canvas id="moodChart" aria-label="最近七日心情折线图"></canvas></div>
+      <p class="card-foot" id="moodNote">空心节点表示那一天没有留下对话，以基线示意。</p>
+    </article>
+
+    <article class="card panel-card">
+      <div class="card-head">
+        <h2>风之属性</h2>
+        <span class="hint">风 / 诗 / 剑 / 静 / 行</span>
+      </div>
+      <div class="canvas-wrap"><canvas id="radarChart" aria-label="风之属性雷达图"></canvas></div>
+      <p class="card-foot">属性由对话中的关键词与语气估算，越谈越像你认识的他。</p>
+    </article>
+
+    <article class="card panel-card">
+      <div class="card-head">
+        <h2>枫叶收集</h2>
+        <span class="hint">一场对话，一片叶</span>
+      </div>
+      <div class="ring-wrap"><canvas id="ringChart" aria-label="枫叶收集进度环"></canvas></div>
+      <p class="card-foot" id="ringNote">在风语对话里说一句，便拾得一片；集满十片，秋色正好。</p>
+    </article>
+
+    <article class="card panel-card">
+      <div class="card-head">
+        <h2>对话主题</h2>
+        <span class="hint">按关键词统计</span>
+      </div>
+      <div class="canvas-wrap"><canvas id="topicChart" aria-label="对话主题分布横条图"></canvas></div>
+      <p class="card-foot" id="topicNote">统计自本地对话，未上传任何内容。</p>
+    </article>
+  </section>
+
+  <section class="journey-bottom">
+    <article class="card timeline-card">
+      <div class="card-head">
+        <h2>最近的话</h2>
+        <span class="hint">只留摘要</span>
+      </div>
+      <ol class="tl-list" id="timeline"></ol>
+    </article>
+
+    <article class="card breath-card">
+      <div class="card-head">
+        <h2>听风练习</h2>
+        <span class="hint">4 · 7 · 8</span>
+      </div>
+      <div class="breath-stage">
+        <div class="breath-ring">
+          <div class="breath-circle" id="breathCircle">
+            <span id="breathPhase">静</span>
+            <b id="breathCount">备</b>
+          </div>
+        </div>
+      </div>
+      <div class="breath-actions">
+        <button class="btn btn-primary" id="breathToggle" type="button" aria-pressed="false">开始呼吸</button>
+        <button class="btn btn-ghost" id="breathReset" type="button">停下</button>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="seal" aria-hidden="true">枫</span>
+      <div>
+        <h2>风语 · 枫原万叶</h2>
+        <p>一个关于风、枫叶与短歌的对话作品。数据面板展示的均为本机记录与示意，不上传任何内容。</p>
+      </div>
+    </div>
+    <nav class="foot-nav" aria-label="页脚导航">
+      <h3>行迹</h3>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="chat.html">风语对话</a></li>
+        <li><a href="story.html">风语剧情</a></li>
+        <li><a href="journey.html">风之旅程</a></li>
+        <li><a href="gallery.html">枫叶图鉴</a></li>
+      </ul>
+    </nav>
+    <div class="foot-note">
+      <h3>风记</h3>
+      <p>「走多远都不必急，<br>风会把脚印，<br>吹成一条小路。」</p>
+      <p class="copy">© <span data-year>2026</span> 风语 · 个人练习作品，仅供学习交流；角色版权归米哈游所有。</p>
+    </div>
+  </div>
+</footer>
+
+<div class="side-mark" aria-hidden="true">風 の 旅</div>
+
+<noscript><p class="noscript">请开启 JavaScript，图表与记录才能显示。</p></noscript>
+
+<script src="js/common.js"></script>
+<script src="js/journey.js"></script>
+</body>
+</html>

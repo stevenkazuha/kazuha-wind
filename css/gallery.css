@@ -1,0 +1,241 @@
+/* ─────────────────────────────────────────────
+   枫叶图鉴 — 官方画册
+   网格统一 4:3 画框，等高于一行，金线切角筛选
+   ───────────────────────────────────────────── */
+
+.gallery-main {
+  position: relative;
+  z-index: 3;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(34px, 5vh, 62px) var(--gutter) 0;
+}
+
+/* ── 页头 ─────────────────────────────────── */
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 26px;
+  padding-bottom: clamp(22px, 3vh, 32px);
+  margin-bottom: clamp(20px, 2.6vh, 28px);
+  border-bottom: 1px solid var(--gold-line);
+}
+
+.page-head-copy { max-width: 640px; }
+
+.page-head h1 {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 3.6vw, 52px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  color: #3b352c;
+}
+
+.page-head h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 11px;
+  margin-top: 12px;
+  background:
+    var(--orn-dia) left center / 11px 11px no-repeat,
+    linear-gradient(90deg, rgba(138, 103, 56, 0.55), rgba(138, 103, 56, 0)) 14px center / 50px 1px no-repeat;
+}
+
+.lede {
+  margin-top: 14px;
+  max-width: 56ch;
+  font-size: 12.5px;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.count-badge {
+  flex: 0 0 auto;
+  padding: 6px 16px;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: #6a5b3f;
+  background: linear-gradient(180deg, rgba(255, 253, 246, 0.9), rgba(241, 232, 213, 0.85));
+  border: 1px solid var(--gold-line);
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+/* ── 筛选：提瓦特切角标签 ─────────────────── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 100%;
+  margin-bottom: clamp(20px, 2.6vh, 28px);
+}
+
+.filter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  max-width: 100%;
+  padding: 7px 18px;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  color: #6f675a;
+  background: linear-gradient(180deg, rgba(255, 253, 246, 0.86), rgba(241, 233, 216, 0.8));
+  border: 1px solid var(--gold-line-soft);
+  cursor: pointer;
+  clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 7px 100%, 0 50%);
+  transition: color 0.22s var(--ease), background 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+
+.filter:hover { color: #3b352c; border-color: var(--gold-line); }
+
+.filter.is-active {
+  color: #6a4a1e;
+  border-color: var(--gold-line);
+  background: linear-gradient(180deg, #f8ead0, #e7d0a1);
+  font-weight: 600;
+}
+
+.filter .cnt {
+  font-size: 9.5px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--gold-deep);
+  opacity: 0.85;
+}
+
+.filter.is-active .cnt { color: #7a5a24; }
+
+/* ── 网格 ─────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 26px);
+  min-width: 0;
+}
+
+.gcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 8px 8px 0;
+  text-align: left;
+  background-color: var(--panel);
+  background-image:
+    var(--orn-dia), var(--orn-dia), var(--orn-dia), var(--orn-dia),
+    linear-gradient(168deg, #fdfaf2 0%, #f7f0e1 48%, #efe5d2 100%);
+  background-position: 5px 5px, calc(100% - 5px) 5px, 5px calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), 0 0;
+  background-size: 10px 10px, 10px 10px, 10px 10px, 10px 10px, 100% 100%;
+  background-repeat: no-repeat;
+  border: 1px solid var(--gold-line);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.gcard:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8), 0 24px 40px -28px rgba(82, 64, 32, 0.65);
+}
+
+.gthumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(138, 103, 56, 0.3);
+  background: linear-gradient(160deg, #e9dfcb, #d9cdb4);
+}
+
+.gthumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  filter: saturate(0.96) contrast(1.02);
+  mix-blend-mode: multiply;
+  transition: transform 0.55s var(--ease), filter 0.4s var(--ease);
+}
+
+.gcard:hover .gthumb img { transform: scale(1.045); filter: saturate(1.05) brightness(1.03); }
+
+.gthumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 62%, rgba(46, 37, 24, 0.24) 100%);
+  pointer-events: none;
+}
+
+.gcard .info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 8px 12px;
+}
+
+.gcard .info h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #3b352c;
+}
+
+.gcard .info > span {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--gold-deep);
+  background: rgba(185, 145, 90, 0.12);
+  border: 1px solid var(--gold-line-soft);
+}
+
+.grid-empty {
+  grid-column: 1 / -1;
+  padding: 60px 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--faint);
+}
+
+/* ── 响应式 ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .gallery-main { padding-top: 26px; }
+  .page-head { flex-direction: column; align-items: flex-start; gap: 14px; padding-bottom: 20px; }
+  .page-head h1 { font-size: 30px; }
+  .lede { font-size: 11.5px; line-height: 1.9; }
+  .count-badge { padding: 5px 12px; font-size: 9.5px; }
+  .filters { gap: 5px; margin-bottom: 18px; }
+  .filter { padding: 6px 13px; font-size: 10.5px; }
+  .grid { gap: 12px; }
+  .gcard { padding: 6px 6px 0; }
+  .gcard .info { padding: 9px 4px 10px; }
+  .gcard .info h3 { font-size: 12.5px; letter-spacing: 0.04em; }
+  .gcard .info > span { display: none; }
+}
+
+/* 超窄屏：单列，避免两列卡片被标题撑破 */
+@media (max-width: 320px) {
+  .grid { grid-template-columns: 1fr; gap: 14px; }
+  .gcard .info h3 { font-size: 13.5px; }
+}

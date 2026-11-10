@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>风语对话 · 枫原万叶</title>
+<meta name="description" content="与枫原万叶对话：风、枫叶与短歌。">
+<meta name="theme-color" content="#3d4454">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2453a'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23f6ead6' font-family='serif'%3E枫%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/img/hero.jpg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/app/apple-touch-icon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/chat.css">
+</head>
+<body class="page-chat" data-page="chat">
+<canvas class="leaves" id="leavesCanvas" aria-hidden="true" width="898" height="1227" style="width: 599px; height: 818px;"></canvas>
+<div class="page-bg" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topnav">
+  <a class="brand" href="index.html" aria-label="风语首页">
+    <span class="seal" aria-hidden="true">枫</span>
+    <span class="brand-name">风语 · 枫原万叶</span>
+  </a>
+  <nav class="nav-links" aria-label="主导航">
+    <a href="index.html" data-nav="home">首页</a>
+    <a href="chat.html" data-nav="chat" class="is-active" aria-current="page">风语对话</a>
+    <a href="story.html" data-nav="story">风语剧情</a>
+    <a href="journey.html" data-nav="journey">风之旅程</a>
+    <a href="gallery.html" data-nav="gallery">枫叶图鉴</a>
+    <a href="install.html" data-nav="install">安装</a>
+  </nav>
+  <div class="nav-auth" id="navAuth"><a class="auth-btn" href="login.html">登录</a></div>
+</header>
+
+<main class="chat-app">
+  <div class="chat-note" id="guestHint">
+    <span>你正以访客身份同行</span>
+    <a href="login.html">登录，让万叶记住你的名字</a>
+  </div>
+
+  <div class="layout">
+    <!-- 角色档案 -->
+    <aside class="panel profile" aria-label="角色档案">
+      <div class="profile-head">
+        <div class="avatar-wrap">
+          <span class="avatar-ring" aria-hidden="true"></span>
+          <span class="avatar-glow" aria-hidden="true"></span>
+          <img class="avatar" src="assets/img/avatar.jpg?v=1" alt="枫原万叶的头像">
+          <span class="avatar-badge" aria-hidden="true">风</span>
+        </div>
+        <div class="intro">
+          <p class="eyebrow">INAZUMA · RONIN</p>
+          <h2>枫原万叶</h2>
+          <p class="role">浪人武士 · 风元素</p>
+        </div>
+      </div>
+
+      <blockquote class="quote">「云隐雁鸣，风归万叶。」</blockquote>
+
+      <dl class="facts">
+        <div><dt>元素</dt><dd>风 / Anemo</dd></div>
+        <div><dt>武器</dt><dd>单手剑</dd></div>
+        <div><dt>所属</dt><dd>稻妻 · 浪人</dd></div>
+      </dl>
+
+      <div class="traits">
+        <div class="trait">
+          <span class="trait-name">风之感知</span>
+          <i class="trait-bar"><b style="width:92%"></b></i>
+        </div>
+        <div class="trait">
+          <span class="trait-name">诗心</span>
+          <i class="trait-bar"><b style="width:86%"></b></i>
+        </div>
+        <div class="trait">
+          <span class="trait-name">剑意</span>
+          <i class="trait-bar"><b style="width:74%"></b></i>
+        </div>
+      </div>
+
+      <div class="journal">
+        <p class="journal-title">同行札记</p>
+        <ul>
+          <li><span>今日对话</span><strong id="statToday">0</strong></li>
+          <li><span>拾得枫叶</span><strong id="statLeaves">0</strong></li>
+          <li><span>并肩里程</span><strong>1,280 里</strong></li>
+        </ul>
+      </div>
+
+      <div class="profile-actions">
+        <button class="ghost-btn" id="btnPoem" type="button">求一首短歌</button>
+        <button class="ghost-btn" id="btnClear" type="button">清空对话</button>
+      </div>
+
+      <p class="profile-foot" id="engineNote">已接入 deepseek-chat · 流式回复</p>
+    </aside>
+
+    <!-- 对话 -->
+    <section class="panel chat" aria-label="与万叶的对话">
+      <header class="chat-head">
+        <div class="chat-id">
+          <span class="chat-avatar is-q"><img src="assets/img/story/q-smile.webp" alt="万叶 Q 版表情"></span>
+          <div>
+            <h3>万叶<span class="chat-dot" aria-hidden="true"></span></h3>
+            <p id="chatStatus">在枫树下等你</p>
+          </div>
+        </div>
+        <div class="chat-tools">
+          <button class="voice-btn" type="button" data-voice-toggle aria-pressed="false" title="开启原声">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 9v6h4l5 4V5l-5 4H4z"/>
+              <path d="M17 8.5a5 5 0 010 7"/>
+            </svg>
+            <span>原声</span>
+          </button>
+          <div class="seg" role="group" aria-label="回复风格">
+            <button class="seg-btn is-on" type="button" data-mode="poetic" aria-pressed="true">诗意</button>
+            <button class="seg-btn" type="button" data-mode="plain" aria-pressed="false">简洁</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="messages" id="messages" aria-live="polite" aria-label="消息列表"><div class="sys-msg">已接入 deepseek-chat · 万叶在此</div><div class="msg assistant"><div class="msg-ava"><img src="assets/img/avatar.jpg?v=1" alt=""></div><div class="msg-body"><div class="bubble">风带来了你的声音。
+
+我是枫原万叶。旅途漫长，若你不急着赶路，便在这里坐一会儿吧——说说此刻的风，或者此刻的你。</div><span class="msg-time">20:18</span></div></div></div>
+
+      <div class="suggest" id="suggest" aria-label="话题建议">
+        <button type="button" data-say="你今天见过怎样的风？">你今天见过怎样的风？</button>
+        <button type="button" data-say="替我写一首短歌">替我写一首短歌</button>
+        <button type="button" data-say="讲讲稻妻的枫叶">讲讲稻妻的枫叶</button>
+        <button type="button" data-say="心里有些乱，怎么办？">心里有些乱，怎么办？</button>
+      </div>
+
+      <form class="composer" id="composer">
+        <button class="circle-btn" id="btnAttach" type="button" aria-label="发送一张图片">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 6.5l-6.2 6.2a2.6 2.6 0 003.7 3.7l6.2-6.2a4.4 4.4 0 00-6.2-6.2l-7.4 7.4a6.2 6.2 0 008.8 8.8l5.6-5.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg>
+        </button>
+        <input type="file" id="fileInput" accept="image/*" hidden="">
+        <label class="sr-only" for="input">输入消息</label>
+        <textarea id="input" rows="1" placeholder="与万叶说些什么……"></textarea>
+        <button class="circle-btn" id="btnMic" type="button" data-voice-mic aria-label="语音输入" title="按住说话，或点一下开始">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="3" width="6" height="11" rx="3"/>
+            <path d="M5.5 11.5a6.5 6.5 0 0013 0"/>
+            <path d="M12 18v3"/>
+          </svg>
+        </button>
+        <button class="send-btn" type="submit" aria-label="发送消息">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5l15-6.5-6 15-2.4-6.1-6.6-2.4z" fill="currentColor"></path></svg>
+        </button>
+      </form>
+      <p class="composer-hint">Enter 发送 · Shift + Enter 换行</p>
+    </section>
+
+    <!-- 枫叶拾遗 -->
+    <aside class="panel rail" id="rail" aria-label="枫叶拾遗">
+      <div class="rail-head">
+        <h3>枫叶拾遗</h3>
+        <span id="galleryCount">10</span>
+      </div>
+      <p class="rail-sub">旅途中的光景，皆为风所拾。</p>
+      <div class="gallery" id="gallery"></div>
+      <a class="rail-more" href="gallery.html">查看全部拾遗</a>
+      <div class="note">
+        <p>「风停了，叶还落着。<br>那便是风留下的，最后一句诗。」</p>
+        <span>— 万叶</span>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div class="side-mark" aria-hidden="true">風 と 葉</div>
+
+<noscript><p class="noscript">请开启 JavaScript，以便与万叶对话。</p></noscript>
+
+<script src="js/common.js"></script>
+<script src="js/config.local.js"></script>
+<script src="js/voice-lines.js"></script>
+<script src="js/voice-tts.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/chat.js"></script>
+
+
+</body></html>

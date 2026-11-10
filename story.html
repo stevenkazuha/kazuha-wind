@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>风语剧情 · 枫原万叶</title>
+<meta name="description" content="风语 · 剧情模式：三段与风有关的小事。全屏 CG、立绘、打字机对话与分支选项。">
+<meta name="theme-color" content="#0b0d12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c2453a'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23f6ead6' font-family='serif'%3E枫%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/img/app/apple-touch-icon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/story.css">
+</head>
+<body class="page-story" data-page="story">
+
+<main class="stage" id="stage">
+  <div class="bg-layer" id="bgA" aria-hidden="true"></div>
+  <div class="bg-layer" id="bgB" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <img class="sprite" id="sprite" src="assets/img/story/q-smile.webp" alt="枫原万叶 Q 版表情" aria-hidden="true">
+
+  <header class="vn-top">
+    <span class="vn-brand">
+      <span class="seal" aria-hidden="true">枫</span>
+      <span>风语 · 风之章</span>
+    </span>
+    <div class="aff-hud" id="affHud" aria-live="polite" aria-label="好感度">
+      <span class="aff-label">好感度</span>
+      <span class="aff-hearts" id="affHearts">
+        <i></i><i></i><i></i><i></i><i></i>
+      </span>
+    </div>
+    <div class="vn-tools">
+      <button type="button" class="voice-toggle" data-voice-toggle aria-pressed="false" title="开启原声"><span>原声</span></button>
+      <button type="button" data-act="auto" aria-pressed="false" title="自动播放">随风</button>
+      <button type="button" data-act="skip" aria-pressed="false" title="跳过">快进</button>
+      <button type="button" data-act="log" title="对话记录">回望</button>
+      <button type="button" id="exit" title="退出剧情">离去</button>
+    </div>
+  </header>
+
+  <div class="aff-pop" id="affPop" aria-hidden="true"></div>
+
+  <section class="chapter-card" id="chapterCard" aria-live="polite">
+    <p id="chapterLabel"></p>
+    <h2 id="chapterName"></h2>
+  </section>
+
+  <div class="choices" id="choices" hidden></div>
+
+  <section class="dialog" id="dialog" hidden aria-live="polite">
+    <div class="dialog-head">
+      <b id="speaker">万叶</b>
+      <em id="emotion" hidden></em>
+    </div>
+    <p class="dlg-text" id="text"></p>
+    <button type="button" class="dlg-replay" id="replay">重听</button>
+    <button type="button" class="dlg-next" id="next" aria-label="继续">▼</button>
+  </section>
+
+  <div class="log-panel" id="logPanel" hidden>
+    <div class="log-card">
+      <h3>走过的句子</h3>
+      <button type="button" class="log-close" id="logClose" aria-label="关闭记录">✕</button>
+      <div class="log-list" id="logList"></div>
+    </div>
+  </div>
+
+  <section class="ending" id="ending">
+    <h2 id="endingTitle"></h2>
+    <p id="endingText"></p>
+    <p class="ending-aff" id="affResult"></p>
+    <div class="ending-actions" id="endingActions"></div>
+  </section>
+
+  <section class="start is-on" id="start">
+    <p class="start-kicker">STORY MODE · 剧情模式</p>
+    <h1>风之章</h1>
+    <p class="start-sub">三段与风有关的小事 · 月下船头、白猫与枫、红叶林</p>
+    <figure class="start-chibi">
+      <img src="assets/img/story/q-smile.webp" alt="枫原万叶 Q 版表情">
+    </figure>
+    <div class="start-actions">
+      <button type="button" class="btn btn-primary" id="startBtn">就此启程</button>
+      <button type="button" class="btn btn-ghost" id="resumeBtn" hidden>接上旧风</button>
+    </div>
+    <p class="start-note">轻点画面继续 · 空格翻页 · 每个选择，都会改变风的去向<br>Q 版表情素材 ©miHoYo，仅作同人展示</p>
+  </section>
+</main>
+
+<noscript><p class="noscript">请开启 JavaScript，剧情模式才能运行。</p></noscript>
+
+<script src="js/common.js"></script>
+<script src="js/voice-lines.js"></script>
+<script src="js/voice-tts.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/story-script.js"></script>
+<script src="js/story.js"></script>
+</body>
+</html>
